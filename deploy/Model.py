@@ -13,7 +13,7 @@ class PhoBERTMultiTask(nn.Module):
     def forward(self, input_ids, attention_mask):
         outputs = self.phobert(
         input_ids=input_ids,
-        attention_mask=attention_mask  # nên có, vì padding cần attention mask
+        attention_mask=attention_mask  # attention mask for padding
     )
         # outputs[1] là pooled output từ RobertaPooler (CLS token)
         pooled_output = self.dropout(outputs.last_hidden_state[:, 0, :]) # take last hidden state to fine tune
